@@ -14,7 +14,8 @@ class PokemonViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        pokemonManager.fetchAll()
+//        pokemonManager.fetchAll()
+        pokemonManager.exampleTrailingClosure()
     }
     
 }
