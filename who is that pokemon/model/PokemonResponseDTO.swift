@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+struct PokemonResponseDTO: Codable {
+    let results: [PokemonResultDTO]
+    let count: Int
+}
+
+struct PokemonResultDTO: Codable {
+    let name: String
+    let url: String
+}
+    

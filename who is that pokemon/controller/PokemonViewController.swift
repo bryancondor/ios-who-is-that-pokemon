@@ -8,9 +8,13 @@
 import UIKit
 
 class PokemonViewController: UIViewController {
+    
+    lazy var pokemonManager = PokemonManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        pokemonManager.fetchAll()
     }
     
 }
