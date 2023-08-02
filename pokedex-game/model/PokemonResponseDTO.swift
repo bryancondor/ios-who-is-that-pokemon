@@ -1,6 +1,6 @@
 //
 //  PokemonApi.swift
-//  who is that pokemon
+//  pokedex-game
 //
 //  Created by Bryan Condor on 29/07/23.
 //

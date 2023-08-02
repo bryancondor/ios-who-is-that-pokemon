@@ -12,7 +12,7 @@
         <!--Pokemon View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="PokemonViewController" customModule="who_is_that_pokemon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="PokemonViewController" customModule="pokedex_game" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="67" width="390" height="723"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="s4G-r7-xx6" userLabel="Header">
-                                        <rect key="frame" x="51" y="0.0" width="288.33333333333337" height="75.333333333333329"/>
+                                        <rect key="frame" x="51" y="0.0" width="288.33333333333331" height="75.333333333333329"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¿Quién es ese Pokémon?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rWt-A7-Pzx">
                                                 <rect key="frame" x="0.0" y="0.0" width="288.33333333333331" height="30"/>
@@ -144,7 +144,7 @@
         <!--Results View Controller-->
         <scene sceneID="rIj-8a-Kaa">
             <objects>
-                <viewController id="For-mf-rOd" customClass="ResultsViewController" customModule="who_is_that_pokemon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="For-mf-rOd" customClass="ResultsViewController" customModule="pokedex_game" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Lsw-wP-l0m">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

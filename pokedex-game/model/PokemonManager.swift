@@ -1,6 +1,6 @@
 //
 //  PokemonManager.swift
-//  who is that pokemon
+//  pokedex-game
 //
 //  Created by Bryan Condor on 29/07/23.
 //
@@ -13,13 +13,20 @@ protocol PokemonManagerDelegate {
     func didUpdateChoosePokemon(pokemon: Pokemon)
 }
 
-struct PokemonManager {
+class PokemonManager {
     
     let pokemonEndpointUrl = "https://pokeapi.co/api/v2/pokemon"
     var pokemonManagerDelegate: PokemonManagerDelegate?
+    var pokemons: [Pokemon]?
     
     func fetchAll() {
-        guard let url = URL(string: pokemonEndpointUrl) else {
+        
+        if(self.pokemons != nil){
+            self.pokemonManagerDelegate?.didUpdatePokemons(pokemons: self.pokemons!)
+            return;
+        }
+        
+        guard let url = URL(string: "\(pokemonEndpointUrl)?limit=151&offset=0") else {
             print("error trying to get the url")
             return
         }
@@ -43,9 +50,11 @@ struct PokemonManager {
                 let response = try decoder.decode(PokemonResponseDTO.self, from: data!)
                 let pokemons = response.results.map{ result in Pokemon(name: result.name)}
                 
-                pokemonManagerDelegate?.didUpdatePokemons(pokemons: pokemons)
+                self.pokemonManagerDelegate?.didUpdatePokemons(pokemons: pokemons)
+                
+                self.pokemons = pokemons
             } catch {
-                pokemonManagerDelegate?.didFail(withError: error)
+                self.pokemonManagerDelegate?.didFail(withError: error)
             }
             
         }
@@ -79,9 +88,9 @@ struct PokemonManager {
                 let pokemonImageUrl = response.sprites.other?.officialArtwork.frontDefault
                 let pokemonPopulated = Pokemon(name: pokemon.name, imageUrl: pokemonImageUrl)
                 
-                pokemonManagerDelegate?.didUpdateChoosePokemon(pokemon: pokemonPopulated)
+                self.pokemonManagerDelegate?.didUpdateChoosePokemon(pokemon: pokemonPopulated)
             } catch {
-                pokemonManagerDelegate?.didFail(withError: error)
+                self.pokemonManagerDelegate?.didFail(withError: error)
             }
             
         }

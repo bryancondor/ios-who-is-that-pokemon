@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  who is that pokemon
+//  pokedex-game
 //
 //  Created by Alex Camacho on 01/08/22.
 //

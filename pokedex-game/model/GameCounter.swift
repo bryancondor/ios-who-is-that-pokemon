@@ -1,6 +1,6 @@
 //
 //  GameCounter.swift
-//  who is that pokemon
+//  pokedex-game
 //
 //  Created by Bryan Condor on 1/08/23.
 //

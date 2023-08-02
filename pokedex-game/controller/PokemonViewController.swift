@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  who is that pokemon
+//  pokedex-game
 //
 //  Created by Alex Camacho on 01/08/22.
 //
@@ -45,7 +45,7 @@ class PokemonViewController: UIViewController {
             timer in
             DispatchQueue.main.async { [self] in
                 pokemonLabel.text = ""
-                pokemonScoreLabel.text = "Puntaje \(gameCounter.score)"
+                pokemonScoreLabel.text = "Puntaje: \(gameCounter.score)"
                 pokemonManager.fetchAll()
             }
         }
@@ -61,7 +61,7 @@ class PokemonViewController: UIViewController {
         pokemonImageView.kf.setImage(with: url)
         
         pokemonLabel.text = "Si, es un \(pokemonChoosed?.name ?? "")"
-        pokemonScoreLabel.text = "Puntaje \(gameCounter.score)"
+        pokemonScoreLabel.text = "Puntaje: \(gameCounter.score)"
     }
 }
 
