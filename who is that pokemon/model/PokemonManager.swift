@@ -7,9 +7,16 @@
 
 import Foundation
 
+protocol PokemonManagerDelegate {
+    func didUpdatePokemons(pokemons: [Pokemon])
+    func didFail(withError error: Error)
+    func didUpdateChoosePokemon(pokemon: Pokemon)
+}
+
 struct PokemonManager {
     
     let pokemonEndpointUrl = "https://pokeapi.co/api/v2/pokemon"
+    var pokemonManagerDelegate: PokemonManagerDelegate?
     
     func fetchAll() {
         guard let url = URL(string: pokemonEndpointUrl) else {
@@ -34,62 +41,51 @@ struct PokemonManager {
             
             do {
                 let response = try decoder.decode(PokemonResponseDTO.self, from: data!)
+                let pokemons = response.results.map{ result in Pokemon(name: result.name)}
                 
-//                func getResult(result: PokemonResultDTO) -> Pokemon {
-//                     Pokemon(name: result.name, imageUrl: "image URL")
-//                }
-
-//                let pokemons = response.results.map({
-//                    (result: PokemonResultDTO) -> Pokemon in Pokemon(name: result.name, imageUrl: "image URL")
-//                })
-                
-//                let pokemons = response.results.map({
-//                    result in Pokemon(name: result.name, imageUrl: "image URL")
-//                })
-                
-//                let pokemons = response.results.map({
-//                    Pokemon(name: $0.name, imageUrl: "image URL")
-//                })
-                                
-                let pokemons = response.results.map{ result in
-                    Pokemon(name: result.name, imageUrl: "image URL")
-                }
-                
-                print(pokemons)
+                pokemonManagerDelegate?.didUpdatePokemons(pokemons: pokemons)
             } catch {
-                print("error \(error)")
+                pokemonManagerDelegate?.didFail(withError: error)
             }
-
+            
         }
         
         task.resume()
     }
     
-    func exampleTrailingClosure() {
-        
-        func myMethod(name: String, nameLengthCounter: (String) -> Int){
-            print("Hello, \(name) your name have \(nameLengthCounter(name)) letters")
+    func fetchPokemonDetail(for pokemon: Pokemon) {
+        guard let url = URL(string: "\(pokemonEndpointUrl)/\(pokemon.name)") else {
+            print("error trying to get the url")
+            return
         }
         
-        func anotherMethod(nameLengthCounter: (String) -> Int){
-            print("Hello, Condor your lastname have \(nameLengthCounter("Condor")) letters")
+        print(url)
+        
+        let urlSession = URLSession(configuration: .default)
+        
+        let task = urlSession.dataTask(with: url){ data, response, error in
+            if error != nil {
+                print(error!)
+            }
+            
+            if data == nil {
+                print("empty data")
+            }
+            
+            let decoder = JSONDecoder()
+            
+            do {
+                let response = try decoder.decode(PokemonDetailResponseDTO.self, from: data!)
+                let pokemonImageUrl = response.sprites.other?.officialArtwork.frontDefault
+                let pokemonPopulated = Pokemon(name: pokemon.name, imageUrl: pokemonImageUrl)
+                
+                pokemonManagerDelegate?.didUpdateChoosePokemon(pokemon: pokemonPopulated)
+            } catch {
+                pokemonManagerDelegate?.didFail(withError: error)
+            }
+            
         }
         
-        myMethod(name: "Bryan", nameLengthCounter: { name in name.count})
-        
-        myMethod(name: "Alexander") { name in
-            name.count
-        }
-        
-        myMethod(name: "Mirella", nameLengthCounter: { $0.count })
-        
-        anotherMethod { lastname in
-            lastname.count
-        }
-        
-        anotherMethod() { lastname in
-            lastname.count
-        }
-        
+        task.resume()
     }
 }

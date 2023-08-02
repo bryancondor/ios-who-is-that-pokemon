@@ -21,16 +21,16 @@
                                 <rect key="frame" x="0.0" y="67" width="390" height="723"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="s4G-r7-xx6" userLabel="Header">
-                                        <rect key="frame" x="46.333333333333343" y="0.0" width="297.33333333333326" height="75.333333333333329"/>
+                                        <rect key="frame" x="51" y="0.0" width="288.33333333333337" height="75.333333333333329"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¿Quién es este Pokémon?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rWt-A7-Pzx">
-                                                <rect key="frame" x="0.0" y="0.0" width="297.33333333333331" height="30"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¿Quién es ese Pokémon?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rWt-A7-Pzx">
+                                                <rect key="frame" x="0.0" y="0.0" width="288.33333333333331" height="30"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Puntaje: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXW-d2-WIl">
-                                                <rect key="frame" x="103" y="50" width="91.666666666666686" height="25.333333333333329"/>
+                                                <rect key="frame" x="98.333333333333343" y="50" width="91.666666666666657" height="25.333333333333329"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -66,6 +66,9 @@
                                                 <state key="normal" title="Flaaffy">
                                                     <color key="titleColor" systemColor="labelColor"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="pokemonButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wmG-UY-GRp"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O95-M6-Fow">
                                                 <rect key="frame" x="0.0" y="58" width="350" height="38"/>
@@ -75,6 +78,9 @@
                                                 <state key="normal" title="Staravia">
                                                     <color key="titleColor" systemColor="labelColor"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="pokemonButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bfW-Su-2fM"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s8P-Tu-ouw">
                                                 <rect key="frame" x="0.0" y="116" width="350" height="38"/>
@@ -84,6 +90,9 @@
                                                 <state key="normal" title="Carvanha">
                                                     <color key="titleColor" systemColor="labelColor"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="pokemonButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bUp-QX-wnU"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W7F-7Q-PUE">
                                                 <rect key="frame" x="0.0" y="174" width="350" height="38"/>
@@ -93,6 +102,9 @@
                                                 <state key="normal" title="Pikachu">
                                                     <color key="titleColor" systemColor="labelColor"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="pokemonButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ebr-Ts-iVG"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -114,6 +126,14 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="PokemonImageView" destination="KuH-Tb-DHX" id="Tnc-A7-ZaL"/>
+                        <outlet property="pokemonImageView" destination="KuH-Tb-DHX" id="Yqs-2V-XDq"/>
+                        <outlet property="pokemonLabel" destination="zwc-BK-jXE" id="fml-U5-LkG"/>
+                        <outlet property="pokemonScoreLabel" destination="mXW-d2-WIl" id="b9J-14-siq"/>
+                        <outletCollection property="pokemonButtons" destination="YPE-G3-QOR" collectionClass="NSMutableArray" id="WZW-Bl-8Uk"/>
+                        <outletCollection property="pokemonButtons" destination="O95-M6-Fow" collectionClass="NSMutableArray" id="O83-gr-TNI"/>
+                        <outletCollection property="pokemonButtons" destination="s8P-Tu-ouw" collectionClass="NSMutableArray" id="DH8-pR-Ik1"/>
+                        <outletCollection property="pokemonButtons" destination="W7F-7Q-PUE" collectionClass="NSMutableArray" id="VZ8-97-GLw"/>
                         <segue destination="For-mf-rOd" kind="presentation" identifier="goToResults" modalPresentationStyle="fullScreen" id="rRf-4W-uwv"/>
                     </connections>
                 </viewController>
@@ -125,7 +145,7 @@
         <scene sceneID="rIj-8a-Kaa">
             <objects>
                 <viewController id="For-mf-rOd" customClass="ResultsViewController" customModule="who_is_that_pokemon" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="Lsw-wP-l0m">
+                    <view key="view" contentMode="scaleToFill" id="Lsw-wP-l0m">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
