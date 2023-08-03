@@ -126,26 +126,25 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="PokemonImageView" destination="KuH-Tb-DHX" id="Tnc-A7-ZaL"/>
-                        <outlet property="pokemonImageView" destination="KuH-Tb-DHX" id="Yqs-2V-XDq"/>
+                        <outlet property="pokemonImageView" destination="KuH-Tb-DHX" id="gVY-Pv-5cb"/>
                         <outlet property="pokemonLabel" destination="zwc-BK-jXE" id="fml-U5-LkG"/>
                         <outlet property="pokemonScoreLabel" destination="mXW-d2-WIl" id="b9J-14-siq"/>
                         <outletCollection property="pokemonButtons" destination="YPE-G3-QOR" collectionClass="NSMutableArray" id="WZW-Bl-8Uk"/>
                         <outletCollection property="pokemonButtons" destination="O95-M6-Fow" collectionClass="NSMutableArray" id="O83-gr-TNI"/>
                         <outletCollection property="pokemonButtons" destination="s8P-Tu-ouw" collectionClass="NSMutableArray" id="DH8-pR-Ik1"/>
                         <outletCollection property="pokemonButtons" destination="W7F-7Q-PUE" collectionClass="NSMutableArray" id="VZ8-97-GLw"/>
-                        <segue destination="For-mf-rOd" kind="presentation" identifier="goToResults" modalPresentationStyle="fullScreen" id="rRf-4W-uwv"/>
+                        <segue destination="For-mf-rOd" kind="presentation" identifier="pokemonResultSegue" modalPresentationStyle="fullScreen" id="rre-U6-EZ0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="121.53846153846153" y="105.92417061611374"/>
         </scene>
-        <!--Results View Controller-->
+        <!--Pokemon Result View Controller-->
         <scene sceneID="rIj-8a-Kaa">
             <objects>
-                <viewController id="For-mf-rOd" customClass="ResultsViewController" customModule="pokedex_game" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Lsw-wP-l0m">
+                <viewController id="For-mf-rOd" customClass="PokemonResultViewController" customModule="pokedex_game" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="Lsw-wP-l0m">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -189,6 +188,9 @@
                                         <buttonConfiguration key="configuration" style="filled" title="Jugar de nuevo">
                                             <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="21"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="pressPlayAgain:" destination="For-mf-rOd" eventType="touchUpInside" id="LE7-ia-A4s"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -208,7 +210,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="Oj2-6v-hZC"/>
                     <connections>
-                        <outlet property="pokemonLabel" destination="bbB-gi-cHs" id="Mj5-qa-28y"/>
+                        <outlet property="pokemonImageView" destination="9Ig-zH-xU7" id="mw0-eu-jA3"/>
+                        <outlet property="pokemonLabel" destination="bbB-gi-cHs" id="EZk-VS-6UY"/>
+                        <outlet property="pokemonScoreLabel" destination="zmE-qW-a4E" id="yeM-t8-qVa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jaT-i2-BTY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -28,7 +28,7 @@ class PokemonViewController: UIViewController {
         }
     }
     
-    var pokemonChoosed: Pokemon?
+    var pokemonAnswer: Pokemon?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +39,7 @@ class PokemonViewController: UIViewController {
     }
     
     @IBAction func pokemonButtonPress(_ sender: UIButton) {
-        let pokemonButtonLabel = sender.title(for: .normal)!
+        let pokemonChoosedLabel = sender.title(for: .normal)!
         
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false) {
             timer in
@@ -50,18 +50,31 @@ class PokemonViewController: UIViewController {
             }
         }
         
-        if pokemonButtonLabel.lowercased() != pokemonChoosed?.name.lowercased() {
+        if pokemonChoosedLabel.lowercased() != pokemonAnswer?.name.lowercased() {
+            self.performSegue(withIdentifier: "pokemonResultSegue", sender: self)
             gameCounter.reset()
             return;
         }
-            
+        
         gameCounter.increment()
         
-        let url = URL(string: (pokemonChoosed?.imageUrl)!)
+        let url = URL(string: (pokemonAnswer?.imageUrl)!)
         pokemonImageView.kf.setImage(with: url)
         
-        pokemonLabel.text = "Si, es un \(pokemonChoosed?.name ?? "")"
+        pokemonLabel.text = "Si, es un \(pokemonAnswer?.name ?? "")"
         pokemonScoreLabel.text = "Puntaje: \(gameCounter.score)"
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier != "pokemonResultSegue" {
+            return;
+        }
+        
+        let pokemonResultViewController = segue.destination as! PokemonResultViewController
+        pokemonResultViewController.pokemonImageUrl = (pokemonAnswer?.imageUrl)!
+        pokemonResultViewController.pokemonAnswerName = (pokemonAnswer?.name)!
+        pokemonResultViewController.totalScoreObtained = self.gameCounter.score
+        
     }
 }
 
@@ -78,15 +91,15 @@ extension Collection {
 extension PokemonViewController: PokemonManagerDelegate{
     func didUpdatePokemons(pokemons: [Pokemon]) {
         randomPokemons = pokemons.choose(4)
-        pokemonChoosed = randomPokemons.pickOneRandom()
-        pokemonManager.fetchPokemonDetail(for: pokemonChoosed!)
+        pokemonAnswer = randomPokemons.pickOneRandom()
+        pokemonManager.fetchPokemonDetail(for: pokemonAnswer!)
     }
     
     func didUpdateChoosePokemon(pokemon: Pokemon) {
         print("pokemon detail \(pokemon)")
         
         DispatchQueue.main.async {
-            self.pokemonChoosed = pokemon
+            self.pokemonAnswer = pokemon
             
             let url = URL(string: pokemon.imageUrl!)
             self.pokemonImageView.kf.setImage(
