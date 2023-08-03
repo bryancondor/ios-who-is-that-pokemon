@@ -58,7 +58,7 @@ class PokemonViewController: UIViewController {
         
         gameCounter.increment()
         
-        let url = URL(string: (pokemonAnswer?.imageUrl)!)
+        let url = URL(string: pokemonAnswer?.imageUrl ?? "")
         pokemonImageView.kf.setImage(with: url)
         
         pokemonLabel.text = "Si, es un \(pokemonAnswer?.name ?? "")"
@@ -71,8 +71,8 @@ class PokemonViewController: UIViewController {
         }
         
         let pokemonResultViewController = segue.destination as! PokemonResultViewController
-        pokemonResultViewController.pokemonImageUrl = (pokemonAnswer?.imageUrl)!
-        pokemonResultViewController.pokemonAnswerName = (pokemonAnswer?.name)!
+        pokemonResultViewController.pokemonImageUrl = pokemonAnswer?.imageUrl ?? ""
+        pokemonResultViewController.pokemonAnswerName = pokemonAnswer?.name ?? ""
         pokemonResultViewController.totalScoreObtained = self.gameCounter.score
         
     }
