@@ -96,8 +96,6 @@ extension PokemonViewController: PokemonManagerDelegate{
     }
     
     func didUpdateChoosePokemon(pokemon: Pokemon) {
-        print("pokemon detail \(pokemon)")
-        
         DispatchQueue.main.async {
             self.pokemonAnswer = pokemon
             
